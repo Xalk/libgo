@@ -1,5 +1,5 @@
-import {HomePage} from "@/pages/home";
 import {setPageLayout} from "@/shared/lib/next";
+import {BookPage} from "@/pages/book";
 import {getOpenLayout} from "@/app/pub/get-open-layout";
 
-export default setPageLayout(HomePage, getOpenLayout);
+export default setPageLayout(BookPage, getOpenLayout);
