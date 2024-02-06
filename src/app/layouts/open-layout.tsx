@@ -17,7 +17,7 @@ export function OpenLayout({children}: { children?: React.ReactNode }) {
                 }
             />
             <main
-                className="flex flex-col justify-between font-sans mt-20">{children}</main>
+                className="flex flex-col justify-between font-sans mt-16">{children}</main>
             <UiFooter/>
         </>
     );
