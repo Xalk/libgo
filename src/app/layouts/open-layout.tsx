@@ -2,6 +2,7 @@
 // import { UpdateTheme } from "@/features/theme";
 import {UiHeader} from "@/shared/ui/ui-header";
 import {UiFooter} from "@/shared/ui/ui-footer";
+import { Button } from "flowbite-react";
 
 export function OpenLayout({children}: { children?: React.ReactNode }) {
     return (
@@ -12,7 +13,7 @@ export function OpenLayout({children}: { children?: React.ReactNode }) {
                     <div className="flex gap-4 items-center ml-auto">
                         {/*<UpdateLang />*/}
                         {/*<UpdateTheme />*/}
-                        <div>right</div>
+                        <Button pill gradientDuoTone="purpleToBlue">SIGN IN</Button>
                     </div>
                 }
             />

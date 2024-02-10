@@ -1,1 +1,1 @@
-export {LibraryPage} from "./library.page"
+export {LibraryPage} from "./ui/library.page"
