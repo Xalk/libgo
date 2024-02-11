@@ -1,5 +1,6 @@
 import { UiTypography } from "@/shared/ui/ui-typography";
 import { Rating } from "flowbite-react";
+import { BookCard } from "@/entities";
 
 export function TopBooks() {
   return (
@@ -12,26 +13,17 @@ export function TopBooks() {
           {
             [...Array(5)].map(b => {
               return (
-                <div className="gap-4 flex mb-3">
-                  <img
-                    width={48}
-                    className="rounded-lg"
-                    src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/contemporary-fiction-night-time-book-cover-design-template-1be47835c3058eb42211574e0c4ed8bf_screen.jpg?ts=1698210220"
-                    alt="..." />
-                  <div>
-                    <p className="line-clamp-1 font-bold text-gray-500 dark:text-gray-400">
-                      Shadow Slave
-                    </p>
-                    <p>
-                      Fantasy
-                    </p>
+                <BookCard
+                  className="flex gap-4 mb-3"
+                  imageStyle="w-1/6"
+                  details={
                     <Rating className="mt-1">
                       <Rating.Star />
                       <p className="ml-2 text-sm dark:text-white">4.95</p>
                     </Rating>
-                  </div>
-                </div>
-              )
+                  }
+                />
+              );
             })
           }
         </div>
@@ -40,58 +32,41 @@ export function TopBooks() {
           {
             [...Array(5)].map(b => {
               return (
-                <div className="gap-4 flex mb-3">
-                  <img
-                    width={48}
-                    className="rounded-lg"
-                    src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/contemporary-fiction-night-time-book-cover-design-template-1be47835c3058eb42211574e0c4ed8bf_screen.jpg?ts=1698210220"
-                    alt="..." />
-                  <div>
-                    <p className="line-clamp-1 font-bold text-gray-500 dark:text-gray-400">
-                      Shadow Slave
-                    </p>
-                    <p>
-                      Fantasy
-                    </p>
+                <BookCard
+                  className="flex gap-4 mb-3"
+                  imageStyle="w-1/6"
+                  details={
                     <Rating className="mt-1">
                       <Rating.Star />
                       <p className="ml-2 text-sm dark:text-white">4.95</p>
                     </Rating>
-                  </div>
-                </div>
-              )
+                  }
+                />
+              );
             })
           }
         </div>
         <div className="">
-          <UiTypography as="h4" variant="heading" className="!text-blue-500 mb-5 text-xl">Collection Ranking</UiTypography>
+          <UiTypography as="h4" variant="heading" className="!text-blue-500 mb-5 text-xl">Collection
+            Ranking</UiTypography>
           {
             [...Array(5)].map(b => {
               return (
-                <div className="gap-4 flex mb-3">
-                  <img
-                    width={48}
-                    className="rounded-lg"
-                    src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/contemporary-fiction-night-time-book-cover-design-template-1be47835c3058eb42211574e0c4ed8bf_screen.jpg?ts=1698210220"
-                    alt="..." />
-                  <div>
-                    <p className="line-clamp-1 font-bold text-gray-500 dark:text-gray-400">
-                      Devouring Monarch: Rebirth of the Profane Phoenix
-                    </p>
-                    <p>
-                      Fantasy
-                    </p>
+                <BookCard
+                  className="flex gap-4 mb-3"
+                  imageStyle="w-1/6"
+                  details={
                     <Rating className="mt-1">
                       <Rating.Star />
                       <p className="ml-2 text-sm dark:text-white">4.95</p>
                     </Rating>
-                  </div>
-                </div>
-              )
+                  }
+                />
+              );
             })
           }
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { UiTypography } from "@/shared/ui/ui-typography";
+import { BookCard } from "@/entities";
+
 
 export function WeeklyFeatured() {
   return (
@@ -36,16 +38,7 @@ export function WeeklyFeatured() {
             [...Array(7)].map(b => {
               return (
                 <Link className="w-1/5" href="/book/123">
-                  <li className="px-2">
-                    <img
-                      className="rounded-lg"
-                      src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/contemporary-fiction-night-time-book-cover-design-template-1be47835c3058eb42211574e0c4ed8bf_screen.jpg?ts=1698210220"
-                      alt="..." />
-                    <UiTypography as="h4" variant="heading" className="text-base line-clamp-2">
-                      Online In Another World
-                    </UiTypography>
-                    <UiTypography as="p" variant="body">Fantasy</UiTypography>
-                  </li>
+                  <BookCard className="px-2"/>
                 </Link>
               );
             })
