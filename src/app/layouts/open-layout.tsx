@@ -1,6 +1,6 @@
 // import { UpdateLang } from "@/features/i18n/";
 // import { UpdateTheme } from "@/features/theme";
-import {UiHeader} from "@/shared/ui/ui-header";
+import {UiHeader} from "@/shared/ui/ui-header/ui-header";
 import {UiFooter} from "@/shared/ui/ui-footer";
 import { Button } from "flowbite-react";
 
