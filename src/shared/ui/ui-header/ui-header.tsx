@@ -6,7 +6,6 @@ import { UiLink } from "@/shared/ui/ui-link";
 import { headerNavLinks } from "./nav-links";
 import { UiMobileNav } from "./ui-mobile-nav";
 import { IoSearch } from "react-icons/io5";
-import { FaMoon } from "react-icons/fa";
 
 
 type UiHeaderProps = {
@@ -28,7 +27,7 @@ export function UiHeader({ className, right, links }: UiHeaderProps) {
   return (
     <header
       className={clsx(
-        "fixed top-0 left-0 w-full z-50 bg-white border-b p-3",
+        "dark:bg-dark-mode fixed top-0 left-0 w-full z-50 bg-white border-b p-3 dark:border-gray-700",
         className
       )}
     >
@@ -43,7 +42,7 @@ export function UiHeader({ className, right, links }: UiHeaderProps) {
               <UiLink
                 key={link.title}
                 href={link.href}
-                className="hidden font-bold hover:text-[#4f6be6] sm:block"
+                className="hidden font-bold hover:text-[#4f6be6] dark:hover:text-[#4f6be6] sm:block"
               >
                 <div className="flex items-center gap-2">
                   {link.icon}{link.title}
@@ -74,11 +73,10 @@ export function UiHeader({ className, right, links }: UiHeaderProps) {
 
           <UiLink
             href="/library"
-            className="hidden font-bold hover:text-[#4f6be6] sm:block"
+            className="hidden font-bold hover:text-[#4f6be6] dark:hover:text-[#4f6be6] sm:block"
           >
             Library
           </UiLink>
-          <FaMoon className="cursor-pointer text-[#83848f]" />
           {right}
 
           <UiMobileNav />

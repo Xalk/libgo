@@ -1,14 +1,11 @@
-// import { useTheme } from "@/features/theme";
+import { useTheme } from "@/features/theme-switcher";
+import clsx from "clsx";
 
-
-import {Inter} from "next/font/google";
-
-const inter = Inter({subsets: ["latin"]});
 
 export function AppLayout({children}: { children?: React.ReactNode }) {
-    // const { theme } = useTheme();
+    const { theme } = useTheme();
     return (
-        <div className={inter.className}>
+        <div className={clsx(theme)}>
             <div className="text-slate-900 dark:text-white">{children}</div>
         </div>
     );

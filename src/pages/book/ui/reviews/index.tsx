@@ -2,7 +2,7 @@ import { Button } from "flowbite-react";
 
 export function Reviews() {
   return (
-    <section className="bg-white dark:bg-gray-900 py-8 lg:py-16 antialiased">
+    <section className="bg-white dark:bg-dark-mode py-8 lg:py-16 antialiased">
       <div className="">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>
@@ -19,7 +19,7 @@ export function Reviews() {
             Post comment
           </Button>
         </form>
-        <article className="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
+        <article className="p-6 text-base bg-white rounded-lg dark:bg-dark-mode">
           <footer className="flex justify-between items-center mb-2">
             <div className="flex items-center">
               <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
@@ -34,7 +34,7 @@ export function Reviews() {
               </p>
             </div>
             <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
-                    className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-dark-mode dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                     type="button">
               <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                    fill="currentColor" viewBox="0 0 16 3">
@@ -79,7 +79,7 @@ export function Reviews() {
             </button>
           </div>
         </article>
-        <article className="p-6 mb-3 ml-6 lg:ml-12 text-base bg-white rounded-lg dark:bg-gray-900">
+        <article className="p-6 mb-3 ml-6 lg:ml-12 text-base bg-white rounded-lg dark:bg-dark-mode">
           <footer className="flex justify-between items-center mb-2">
             <div className="flex items-center">
               <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
@@ -94,7 +94,7 @@ export function Reviews() {
               </p>
             </div>
             <button id="dropdownComment2Button" data-dropdown-toggle="dropdownComment2"
-                    className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-40 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-40 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-dark-mode dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                     type="button">
               <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                    fill="currentColor" viewBox="0 0 16 3">
@@ -137,7 +137,7 @@ export function Reviews() {
           </div>
         </article>
         <article
-          className="p-6 mb-3 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+          className="p-6 mb-3 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-dark-mode">
           <footer className="flex justify-between items-center mb-2">
             <div className="flex items-center">
               <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
@@ -152,7 +152,7 @@ export function Reviews() {
               </p>
             </div>
             <button id="dropdownComment3Button" data-dropdown-toggle="dropdownComment3"
-                    className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-40 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-40 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-dark-mode dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                     type="button">
               <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                    fill="currentColor" viewBox="0 0 16 3">
@@ -196,7 +196,7 @@ export function Reviews() {
           </div>
         </article>
         <article
-          className="p-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+          className="p-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-dark-mode">
           <footer className="flex justify-between items-center mb-2">
             <div className="flex items-center">
               <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
@@ -211,7 +211,7 @@ export function Reviews() {
               </p>
             </div>
             <button id="dropdownComment4Button" data-dropdown-toggle="dropdownComment4"
-                    className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-40 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-40 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-dark-mode dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                     type="button">
               <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                    fill="currentColor" viewBox="0 0 16 3">

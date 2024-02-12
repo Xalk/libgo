@@ -17,7 +17,7 @@ export function UiLink({
       {...props}
       className={clsx(
         className,
-        "flex gap-1 items-center text-center text-[#12121799]")}
+        "flex gap-1 items-center text-center text-[#12121799] dark:text-[#989898]")}
     >
       {children}
     </Link>

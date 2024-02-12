@@ -5,7 +5,7 @@ import { BookCard } from "@/entities";
 export function TopBooks() {
   return (
     <div className="mt-12 mb-10">
-      <UiTypography as="h3" variant="heading" className="mb-5 pb-5 border-b">Top Books</UiTypography>
+      <UiTypography as="h3" variant="heading" className="mb-5 pb-5 border-b dark:border-gray-700">Top Books</UiTypography>
       <div className="grid grid-cols-3">
 
         <div className="">

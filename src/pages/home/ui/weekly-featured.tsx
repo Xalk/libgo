@@ -6,9 +6,9 @@ import { BookCard } from "@/entities";
 export function WeeklyFeatured() {
   return (
     <div className="mt-12">
-      <UiTypography as="h3" variant="heading" className="mb-5 pb-5 border-b">Weekly Featured</UiTypography>
+      <UiTypography as="h3" variant="heading" className="mb-5 pb-5 border-b dark:border-gray-700">Weekly Featured</UiTypography>
       <div className="flex gap-[20px]">
-        <div className="rounded flex flex-col gap-4 bg-gray-100">
+        <div className="rounded flex flex-col gap-4 bg-gray-100 dark:bg-gray-700">
           <div className="">
             <div
               className="rounded-t w-full h-72 bg-[url('https://d1csarkz8obe9u.cloudfront.net/posterpreviews/contemporary-fiction-night-time-book-cover-design-template-1be47835c3058eb42211574e0c4ed8bf_screen.jpg?ts=1698210220')] bg-cover bg-center">

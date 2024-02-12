@@ -1,6 +1,6 @@
 export function UiFooter(){
     return (
-        <footer className="bg-gray-100">
+        <footer className="bg-gray-100 dark:bg-dark-mode">
             <div className="mx-auto max-w-5xl space-y-8 py-16 lg:space-y-16">
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div>

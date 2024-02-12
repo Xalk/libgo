@@ -56,12 +56,12 @@ export function WeeklyBook() {
       </div>
       <div className="">
         <UiTypography as="h3" variant="heading" className="mb-5">Meet Libgo</UiTypography>
-        <ul className="border-b mt-5">
+        <ul className="border-b dark:border-gray-700 mt-5">
           {
             meetData.map(m => {
               return (
                 <Link href="#">
-                  <li key={m.text} className="flex items-center justify-between gap-4 border-t p-3 hover:bg-gray-100">
+                  <li key={m.text} className="flex items-center justify-between gap-4 border-t dark:border-gray-700 p-3 hover:bg-gray-100 dark:hover:bg-gray-700">
                     <div className="flex flex-col">
                       <UiTypography as="h4" variant="heading" className="text-base">
                         {m.title}
