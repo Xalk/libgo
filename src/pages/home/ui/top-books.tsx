@@ -1,6 +1,6 @@
 import { UiTypography } from "@/shared/ui/ui-typography";
 import { Rating } from "flowbite-react";
-import { BookCard } from "@/entities";
+import { BookCard } from "@/entities/book";
 
 export function TopBooks() {
   return (

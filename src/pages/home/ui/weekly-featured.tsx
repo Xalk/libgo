@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { UiTypography } from "@/shared/ui/ui-typography";
-import { BookCard } from "@/entities";
+import { BookCard } from "@/entities/book";
 
 
 export function WeeklyFeatured() {

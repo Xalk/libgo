@@ -24,12 +24,12 @@ export function createStrictContext<T>() {
 }
 
 export function useAppearanceDelay(
-    show?: boolean,
-    options = {} as {
-        defaultValue?: boolean;
-        appearenceDelay?: number;
-        minDisplay?: number;
-    },
+  show?: boolean,
+  options = {} as {
+      defaultValue?: boolean;
+      appearenceDelay?: number;
+      minDisplay?: number;
+  },
 ) {
     const {
         minDisplay = 500,
@@ -56,19 +56,19 @@ export function useAppearanceDelay(
     return delayedShow;
 }
 
-export function ComposeChildren({children}: { children: ReactNode }) {
+export function ComposeChildren({ children }: { children: ReactNode }) {
     const array = Children.toArray(children);
     const last = array.pop();
     return (
-        <>
-            {array.reduceRight(
-                (child, element) =>
-                    isValidElement(element)
-                        ? createElement(element.type, element.props, child)
-                        : child,
-                last,
-            )}
-        </>
+      <>
+          {array.reduceRight(
+            (child, element) =>
+              isValidElement(element)
+                ? createElement(element.type, element.props, child)
+                : child,
+            last,
+          )}
+      </>
     );
 }
 
@@ -80,12 +80,11 @@ export function useEventCallback<A extends any[], R>(fn: Fn<A, R>): Fn<A, R> {
         ref.current = fn;
     });
     return useMemo(
-        () =>
-            (...args: A): R => {
-                const {current} = ref;
-                return current(...args);
-            },
-        [],
+      () =>
+        (...args: A): R => {
+            const { current } = ref;
+            return current(...args);
+        },
+      [],
     );
 }
-

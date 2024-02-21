@@ -1,5 +1,5 @@
 import { Button, Rating, Tabs } from "flowbite-react";
-import { BookCard } from "@/entities";
+import { BookCard } from "@/entities/book";
 
 export function LibraryHistoryTabs() {
   return (
