@@ -8,15 +8,17 @@ import { UiLink } from "@/shared/ui/ui-link";
 import { ROUTES } from "@/shared/constants";
 
 
-export function SignInForm({ className }: { className?: string }) {
+export function SignUpForm({ className }: { className?: string }) {
 
   const { register, handleSubmit, formState } = useForm<{
     email: string;
     password: string;
+    nickname: string;
   }>({
     defaultValues: {
       email: "",
-      password: ""
+      password: "",
+      nickname: ""
     }
   });
 
@@ -31,6 +33,15 @@ export function SignInForm({ className }: { className?: string }) {
       className={clsx(className, "flex flex-col gap-4")}
       onSubmit={handleSubmitSignIn}
     >
+      <UiTextField
+        label="Nickname"
+        inputProps={{
+          ...register("nickname"),
+          type: "nickname",
+          placeholder: "user123"
+        }}
+        error={formState.errors.email?.message}
+      />
       <UiTextField
         label="Email"
         inputProps={{
@@ -50,9 +61,9 @@ export function SignInForm({ className }: { className?: string }) {
         error={formState.errors.password?.message}
       />
       <Button type="submit" isProcessing={isLoading}>
-        Sign in
+        Sign up
       </Button>
-      <UiLink className="!block" href={ROUTES.SIGN_UP}>Sign Up</UiLink>
+      <UiLink className="!block" href={ROUTES.SIGN_IN}>Sign In</UiLink>
       {error && <p className="text-red-500">{error}</p>}
     </form>
   );
