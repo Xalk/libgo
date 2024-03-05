@@ -71,12 +71,12 @@ export function UiHeader({ className, right, links }: UiHeaderProps) {
             </div>
           </div>
 
-          <UiLink
-            href="/library"
-            className="hidden font-bold hover:text-[#4f6be6] dark:hover:text-[#4f6be6] sm:block"
-          >
-            Library
-          </UiLink>
+          {/*<UiLink*/}
+          {/*  href="/library"*/}
+          {/*  className="hidden font-bold hover:text-[#4f6be6] dark:hover:text-[#4f6be6] sm:block"*/}
+          {/*>*/}
+          {/*  Library*/}
+          {/*</UiLink>*/}
           {right}
 
           <UiMobileNav />
