@@ -6,5 +6,5 @@ export const headerNavLinks = [
   { href: "/", title: "Home", icon: <FaCompass /> },
   { href: "/browse", title: "Browse", icon: <FaCompass /> },
   { href: "/ranking", title: "Ranking", icon: <FaChartBar /> },
-  { href: "/create", title: "Create", icon: <ImPencil2 /> }
+  { href: "/book/create", title: "Create", icon: <ImPencil2 /> }
 ];
