@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { UiTextField } from "@/shared/ui/ui-text-field";
 import { Button } from "flowbite-react";
 import { UiNumberField } from "@/shared/ui/ui-number-field";
+import { GenreSelect } from "./genre-select";
 
 
 export function CreateBookForm({ className }: { className?: string }) {
@@ -12,25 +13,27 @@ export function CreateBookForm({ className }: { className?: string }) {
     description: string;
     price: number;
     coAuthors: string[];
+    genre: string;
   }>({
     defaultValues: {
       name: "",
       description: "",
       price: 0,
-      coAuthors: []
+      coAuthors: [],
+      genre: ""
     }
   });
 
   const error = false;
 
-  const handleSubmitSignIn = handleSubmit((data) => {
+  const handleSubmitCreate = handleSubmit((data) => {
     console.log(data);
   });
 
   return (
     <form
       className={clsx(className, "flex flex-col gap-4")}
-      onSubmit={handleSubmitSignIn}
+      onSubmit={handleSubmitCreate}
     >
       <UiTextField
         label="Name"
@@ -50,6 +53,15 @@ export function CreateBookForm({ className }: { className?: string }) {
           placeholder: "Description"
         }}
         error={formState.errors.description?.message}
+      />
+      <GenreSelect
+        label="Choose genre"
+        error={formState.errors.genre?.message}
+        selectProps={
+          {
+            ...register("genre")
+          }
+        }
       />
       <div className="flex gap-4">
         <UiNumberField
