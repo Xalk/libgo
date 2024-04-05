@@ -1,10 +1,16 @@
-type Role = "admin" | "user";
+// type Role = "admin" | "user";
 
-export type Session = {
-  id: string;
-  userId: string;
-  name: string;
+export interface Session {
+  nickname: string;
+  email: string
+}
+
+export interface SignInDto {
   email: string;
-  avatarId: string;
-  role: Role;
-};
+  password: string;
+}
+export interface TokensDto {
+  accessToken: string;
+  refreshToken: string;
+}
+

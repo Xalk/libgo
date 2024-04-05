@@ -15,12 +15,9 @@ export function AppLoader({
 }) {
 
   const [session, setSession] = useState<Session | undefined>({
-    id: "123",
-    userId: "123",
-    name: "123",
+    nickname: "123",
     email: "123",
-    avatarId: "123",
-    role: "user"
+
   });
 
   const loadTheme = useTheme((s) => s.loadTheme);

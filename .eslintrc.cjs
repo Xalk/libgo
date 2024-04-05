@@ -82,6 +82,17 @@ module.exports = {
                             [
                                 "shared",
                                 {
+                                    segment: "api",
+                                },
+                            ],
+                        ],
+                        allow: "*.(ts|tsx)",
+                    },
+                    {
+                        target: [
+                            [
+                                "shared",
+                                {
                                     segment: "constants",
                                 },
                             ],

@@ -1,7 +1,8 @@
-import { useSession } from "@/entities/session";
+import { useSession, api, SignInDto } from "@/entities/session";
 
 
 import { useState } from "react";
+
 import { useRouter } from "next/router";
 
 export function useSignIn() {
@@ -12,36 +13,29 @@ export function useSignIn() {
 
   const setCurrentSession = useSession((s) => s.setCurrentSession);
 
-  const signIn = (signInDto: any) => {
-    // setCurrentSession({
-    //   id: "123",
-    //   userId: "123",
-    //   name: "123",
-    //   email: "123",
-    //   avatarId: "123",
-    //   role: "user"
-    // })
-    // setIsLoading(true);
-    // api.signIn(signInDto)
-    //   .then(async (session) => {
-    //     setCurrentSession(await api.getSession());
-    //
-    //     return session;
-    //   })
-    //   .then(() => {
-    //     router.push("/profile");
-    //   })
-    //   .catch(() => {
-    //     setError("sign-in-error");
-    //   })
-    //   .finally(() => {
-    //     setIsLoading(false);
-    //   });
+  const signIn = (signInDto: SignInDto) => {
+    setIsLoading(true);
+    api.
+      signIn(signInDto)
+      .then(async (session) => {
+        // setCurrentSession(await api.getSession());
+
+        return session;
+      })
+      .then(() => {
+        router.push("/profile");
+      })
+      .catch(() => {
+        setError("sign-in-error");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return {
     isLoading,
     error,
-    signIn
+    signIn,
   };
 }
