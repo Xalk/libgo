@@ -1,9 +1,13 @@
 import Link from "next/link";
 import { UiTypography } from "@/shared/ui/ui-typography";
-import { BookCard } from "@/entities/book";
+import { BookCard, useBooks } from "@/entities/book";
+
 
 
 export function WeeklyFeatured() {
+
+  const {books} = useBooks()
+
   return (
     <div className="mt-12">
       <UiTypography as="h3" variant="heading" className="mb-5 pb-5 border-b dark:border-gray-700">Weekly Featured</UiTypography>
@@ -35,10 +39,10 @@ export function WeeklyFeatured() {
         </div>
         <ul className="flex flex-wrap">
           {
-            [...Array(7)].map(b => {
+            books.map(b => {
               return (
-                <Link className="w-1/5" href="/book/123">
-                  <BookCard className="px-2"/>
+                <Link className="w-1/5" href={`/book/${b.id}`}>
+                  <BookCard name={b.name} className="px-2"/>
                 </Link>
               );
             })

@@ -2,7 +2,7 @@ import axios, {AxiosError, AxiosRequestConfig} from "axios";
 
 
 export const apiInstance = axios.create({
-    baseURL: process.env.BASE_API_URL + "/api",
+    baseURL: "http://localhost:5020",
     withCredentials: true,
     headers: {
         "Content-Type": "application/json",
