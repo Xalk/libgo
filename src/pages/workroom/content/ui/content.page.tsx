@@ -1,58 +1,80 @@
 import { UiTypography } from "@/shared/ui/ui-typography";
-import { Button } from "flowbite-react";
-import { MdDelete, MdEdit } from "react-icons/md";
+import { Button, Badge } from "flowbite-react";
 import { IoMdSettings } from "react-icons/io";
 import { useRouter } from "next/router";
+import { ChapterList, useGetBookChapters, useWorkroom } from "@/features/workroom";
+import { useEffect, useState } from "react";
+import { UiSpinner } from "@/shared/ui/ui-spinner";
+import ConfettiExplosion, { ConfettiProps } from "react-confetti-explosion";
+
 
 export function ContentPage() {
   const router = useRouter();
+  const { query } = useRouter();
+  const bookId = query.bookId as string;
+
+
+  const { getBookById, resetSelectedBookChapters } = useWorkroom();
+  const { getBookChapters, isLoading } = useGetBookChapters();
+
+  useEffect(() => {
+    getBookChapters(Number(bookId));
+
+    return () => {
+      resetSelectedBookChapters();
+    };
+  }, []);
+
+
+  const book = getBookById(bookId);
+
+  const largeProps: ConfettiProps = {
+    force: 0.8,
+    duration: 3000,
+    particleCount: 300,
+    width: 1600,
+    colors: ['#041E43', '#1471BF', '#5BB4DC', '#FC027B', '#66D805'],
+  };
+  const [isExploding, setIsExploding] = useState(false);
+  const handleReleaseBook = async () => {
+    setIsExploding(!isExploding);
+  };
 
   return (
     <div className="container mx-auto max-w-5xl px-4 sm:px-6 xl:max-w-5xl xl:px-0 mt-8">
       <div className="flex justify-between pr-9">
-        <UiTypography as="h2" variant="heading">
-          New Eden: Live to Play, Play to Live
-        </UiTypography>
-        <Button size="sm" pill color="gray" onClick={() => router.push(`/workroom/${123}/edit`)}>
-          <IoMdSettings className="w-4 h-4" />
-        </Button>
+        <div className="flex items-center gap-2">
+          <UiTypography as="h2" variant="heading">
+            {book?.name}
+          </UiTypography>
+          <Badge color="failure">Draft</Badge>
+        </div>
+        <div className="flex gap-2">
+          <Button size="sm" pill color="gray" onClick={() => router.push(`/workroom/${bookId}/edit`)}>
+            <IoMdSettings className="w-4 h-4" />
+          </Button>
+          {/*don't delete*/}
+          {/*<Button size="sm" pill color="red" onClick={() => removeBook(bookId)}>*/}
+          {/*  <MdDelete className="w-4 h-4" />*/}
+          {/*</Button>*/}
+        </div>
       </div>
-      <Button pill gradientDuoTone="purpleToBlue" size="sm" className="mt-5" onClick={() => router.push(`/workroom/${123}/chapter`)}>+ ADD CHAPTER</Button>
-      <table className="text-left text-lg font-light w-full mt-5">
-        <thead
-          className="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-600">
-        <tr>
-          <th scope="col" className="py-4 px-10">№</th>
-          <th scope="col" className="px-6 py-4">Chapter</th>
-        </tr>
-        </thead>
-        <tbody>
-        {
-          [...Array(9)].map((b, i) => {
-            return (
-              <tr
-                className={`border-b ${i % 2 === 0 ? "bg-white" : "bg-neutral-100"} dark:border-neutral-500 dark:bg-neutral-700`}>
-                <td className="whitespace-nowrap px-10 py-4">
-                  1
-                </td>
-                <td className="whitespace-nowrap px-10 py-4 flex justify-between">
-                  <p>The Distinguished and Aristocrats Only</p>
-                  <div className="flex gap-3">
-                    <Button size="sm" pill color="yellow" onClick={() => router.push(`/workroom/${123}/chapter/${123}`)}>
-                      <MdEdit className="w-4 h-4" />
-                    </Button>
-                    <Button size="sm" pill color="red">
-                      <MdDelete className="w-4 h-4" />
-                    </Button>
+      <div className="flex gap-2">
+        <Button pill gradientDuoTone="purpleToBlue" size="sm" className="mt-5"
+                onClick={() => router.push(`/workroom/${bookId}/chapter`)}>+ ADD CHAPTER
+        </Button>
+        <div>
+          <Button pill gradientDuoTone="purpleToBlue" size="sm" className="mt-5"
+                  onClick={handleReleaseBook}>
+            RELEASE BOOK
+            {isExploding && <ConfettiExplosion {...largeProps} />}
+          </Button>
 
-                  </div>
-                </td>
-              </tr>
-            );
-          })
-        }
-        </tbody>
-      </table>
+        </div>
+      </div>
+      {
+        isLoading ? <UiSpinner className="mt-5" /> : <ChapterList className="mt-5" />
+      }
     </div>
   );
 }

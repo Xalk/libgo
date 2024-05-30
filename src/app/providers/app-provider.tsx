@@ -1,4 +1,6 @@
 import { ComposeChildren } from "@/shared/lib/react";
+import { Confirmations } from "@/widgets/confirmations";
+
 
 
 export function AppProvider({ children }: { children?: React.ReactNode }) {
@@ -6,7 +8,7 @@ export function AppProvider({ children }: { children?: React.ReactNode }) {
     return (
         <ComposeChildren>
             {/*<I18nProvider lang={lang} />*/}
-            {/*<Confirmations />*/}
+            <Confirmations />
             {/*<Toasts config={{ lifeTime: 3000 }} />*/}
             {children}
         </ComposeChildren>

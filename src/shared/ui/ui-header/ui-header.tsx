@@ -12,10 +12,11 @@ type UiHeaderProps = {
   className?: string;
   links?: ReactNode;
   right?: ReactNode;
+  isMobileNav?: boolean;
 }
 
 
-export function UiHeader({ className, right, links }: UiHeaderProps) {
+export function UiHeader({ className, right, links = null, isMobileNav = true}: UiHeaderProps) {
 
   const [isActive, setIsActive] = useState(false);
 
@@ -23,6 +24,19 @@ export function UiHeader({ className, right, links }: UiHeaderProps) {
     setIsActive(!isActive);
   };
 
+  const defaultLinks = headerNavLinks
+    .filter((link) => link.href !== "/")
+    .map((link) => (
+      <UiLink
+        key={link.title}
+        href={link.href}
+        className="hidden font-bold hover:text-[#4f6be6] dark:hover:text-[#4f6be6] sm:block"
+      >
+        <div className="flex items-center gap-2">
+          {link.icon}{link.title}
+        </div>
+      </UiLink>
+    ))
 
   return (
     <header
@@ -36,21 +50,8 @@ export function UiHeader({ className, right, links }: UiHeaderProps) {
           <Link href="/">
             <UiLogo />
           </Link>
-          {headerNavLinks
-            .filter((link) => link.href !== "/")
-            .map((link) => (
-              <UiLink
-                key={link.title}
-                href={link.href}
-                className="hidden font-bold hover:text-[#4f6be6] dark:hover:text-[#4f6be6] sm:block"
-              >
-                <div className="flex items-center gap-2">
-                  {link.icon}{link.title}
-                </div>
-              </UiLink>
-            ))}
+          {links || defaultLinks}
         </div>
-        {/*{links}*/}
         <div className="flex items-center gap-4">
           <div className="hidden sm:block relative top-[-20px]">
             <input
@@ -79,7 +80,7 @@ export function UiHeader({ className, right, links }: UiHeaderProps) {
           {/*</UiLink>*/}
           {right}
 
-          <UiMobileNav />
+          {isMobileNav && <UiMobileNav />}
         </div>
 
 

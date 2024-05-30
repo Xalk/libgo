@@ -1,16 +1,19 @@
 import { ReactNode, useEffect, useState } from "react";
 import { useTheme } from "@/features/theme-switcher";
-import { Session, SessionProvider } from "@/entities/session";
+import { Session, SessionProvider, api } from "@/entities/session";
 import { booksApi } from "@/shared/api";
 import { CURRENT_API_VERSION } from "@/shared/constants";
 import { Book, BooksProvider } from "@/entities/book";
 import { ComposeChildren } from "@/shared/lib/react";
+import { WorkroomProvider } from "@/features/workroom";
+
 
 
 export const loadAppLoaderData = async () => {
   try {
-    const books = await booksApi.getApiBooks(CURRENT_API_VERSION);
-    return { books };
+    const user = await api.getSession();
+    const session = await api.getMe(user.sub)
+    return { session };
   } catch {
     return {};
   }
@@ -18,21 +21,29 @@ export const loadAppLoaderData = async () => {
 
 export function AppLoader({
                             children,
-                            data: defaultData
+                            data
                           }: {
   children?: ReactNode;
   data?: Awaited<ReturnType<typeof loadAppLoaderData>>;
 }) {
 
-  const [session, setSession] = useState<Session | undefined>({
-    nickname: "123",
-    email: "123"
-  });
-  const [data, setData] = useState(defaultData);
-  const books = data?.books;
-  const isData = !!books;
+  const [session, setSession] = useState<Session | undefined>(data?.session);
+  const [books, setBooks] = useState<Book[] | undefined>();
+  const [myBooks, setMyBooks] = useState<Book[] | undefined>();
+
+  const isData = !!session && !!books;
 
   const [isLoading, setIsLoading] = useState(!isData);
+
+  const loadBooks = async () => {
+    try {
+      const books = await booksApi.getApiBooks(CURRENT_API_VERSION);
+      setBooks(books);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
 
   const loadTheme = useTheme((s) => s.loadTheme);
 
@@ -45,13 +56,23 @@ export function AppLoader({
     }
     setIsLoading(true);
 
+    loadBooks();
+
     loadAppLoaderData()
-      .then(setData)
+      .then(async (d) => {
+
+        if (d.session) {
+          setSession(d.session);
+
+          const userBooks = await booksApi.getApiBooksUserUserId(CURRENT_API_VERSION, Number(d.session?.id));
+          setMyBooks(userBooks);
+        }
+      })
       .finally(() => {
         setIsLoading(false);
       });
 
-  }, [loadTheme]);
+  }, [loadTheme, isData]);
 
 
   return (
@@ -59,6 +80,7 @@ export function AppLoader({
       {isLoading ? null : (
         <ComposeChildren>
           <BooksProvider value={{ books: books ?? [] }} />
+          <WorkroomProvider value={{ myBooks: myBooks ?? [] }} />
           <SessionProvider
             value={{
               session

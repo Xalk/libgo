@@ -5,9 +5,18 @@ import { BiSolidFlagAlt } from "react-icons/bi";
 import { IoEye } from "react-icons/io5";
 import { FaSheetPlastic } from "react-icons/fa6";
 import { IoIosBookmarks } from "react-icons/io";
+import { useReadBook } from "@/features/book";
 
 
-export function MainSection() {
+
+type MainSectionProps = {
+  name?: string;
+}
+
+export function MainSection({name}: MainSectionProps) {
+
+  const { handleRead } = useReadBook('1');
+
   return (
     <div className="flex flex-wrap gap-8">
       <img
@@ -17,7 +26,7 @@ export function MainSection() {
       <div className="flex flex-col justify-between">
         <div className="flex flex-col gap-4">
           <UiTypography as="h1" variant="heading">
-            New Eden: Live to Play, Play to Live
+            {name}
           </UiTypography>
           <ul className="flex gap-4">
             <li className="flex gap-1 items-center"><IoIosBookmarks /> Games</li>
@@ -38,7 +47,7 @@ export function MainSection() {
         </div>
         <div className="flex flex-col gap-4 items-start">
           <div className="flex gap-4">
-            <Button pill gradientDuoTone="purpleToBlue">READ</Button>
+            <Button pill gradientDuoTone="purpleToBlue" onClick={handleRead}>READ</Button>
             <Button pill gradientDuoTone="purpleToBlue">+ ADD TO LIBRARY</Button>
           </div>
           <UiLink href="#" className="hover:underline">

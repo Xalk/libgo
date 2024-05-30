@@ -1,5 +1,5 @@
 import {setPageLayout} from "@/shared/lib/next";
-import {getOpenLayout} from "@/app/pub/get-open-layout";
 import { EditChapterPage } from "@/pages/workroom";
+import { getPrivateLayout } from "@/app/pub/get-private-layout";
 
-export default setPageLayout(EditChapterPage, getOpenLayout);
+export default setPageLayout(EditChapterPage, getPrivateLayout);

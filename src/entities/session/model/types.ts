@@ -1,16 +1,24 @@
 // type Role = "admin" | "user";
 
 export interface Session {
+  id: number;
+  userName: string;
+  email: string;
   nickname: string;
-  email: string
+  description: string;
+  registerDate: Date;
+  "role": "User" | "Admin";
 }
 
 export interface SignInDto {
-  email: string;
+  userName: string;
   password: string;
 }
+
 export interface TokensDto {
-  accessToken: string;
-  refreshToken: string;
+  access_token: string
+  expires_in: number
+  token_type: string
+  scope: string
 }
 

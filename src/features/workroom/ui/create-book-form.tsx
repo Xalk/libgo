@@ -4,14 +4,19 @@ import { UiTextField } from "@/shared/ui/ui-text-field";
 import { Button } from "flowbite-react";
 import { UiNumberField } from "@/shared/ui/ui-number-field";
 import { GenreSelect } from "./genre-select";
+import { useCreateBook } from "../model/use-create-book";
+import { useRouter } from "next/router";
 
 
-export function UpdateBookForm({ className }: { className?: string }) {
+export function CreateBookForm({ className }: { className?: string }) {
+
+  const router = useRouter();
 
   const { register, handleSubmit, formState } = useForm<{
     name: string;
     description: string;
     price: number;
+    photoUrl: string;
     coAuthors: string[];
     genre: string;
   }>({
@@ -19,6 +24,7 @@ export function UpdateBookForm({ className }: { className?: string }) {
       name: "",
       description: "",
       price: 0,
+      photoUrl: "",
       coAuthors: [],
       genre: ""
     }
@@ -26,8 +32,21 @@ export function UpdateBookForm({ className }: { className?: string }) {
 
   const error = false;
 
+  const { createBook } = useCreateBook();
+  const onCreate = (bookId: number) => {
+    router.push(`/workroom/${bookId}`);
+  };
+
   const handleSubmitCreate = handleSubmit((data) => {
     console.log(data);
+    createBook({
+        name: data.name,
+        description: data.description,
+        price: data.price,
+        photoUrl: data.photoUrl,
+        coAuthorIds: [0]
+      },
+      onCreate);
   });
 
   return (
@@ -45,7 +64,6 @@ export function UpdateBookForm({ className }: { className?: string }) {
         error={formState.errors.name?.message}
       />
       <UiTextField
-        multiline
         label="Description"
         inputProps={{
           ...register("description"),
@@ -62,6 +80,15 @@ export function UpdateBookForm({ className }: { className?: string }) {
             ...register("genre")
           }
         }
+      />
+      <UiTextField
+        label="Cover photo url"
+        inputProps={{
+          ...register("photoUrl"),
+          type: "photoUrl",
+          placeholder: "https://example.com/cover.jpg"
+        }}
+        error={formState.errors.description?.message}
       />
       <div className="flex gap-4">
         <UiNumberField
@@ -86,7 +113,7 @@ export function UpdateBookForm({ className }: { className?: string }) {
         />
       </div>
       <Button type="submit" isProcessing={false}>
-        Save
+        Create
       </Button>
       {error && <p className="text-red-500">{error}</p>}
     </form>

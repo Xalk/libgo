@@ -4,6 +4,7 @@ import { useSession, api, SignInDto } from "@/entities/session";
 import { useState } from "react";
 
 import { useRouter } from "next/router";
+import { AxiosError } from "axios";
 
 export function useSignIn() {
 
@@ -15,18 +16,30 @@ export function useSignIn() {
 
   const signIn = (signInDto: SignInDto) => {
     setIsLoading(true);
-    api.
-      signIn(signInDto)
-      .then(async (session) => {
-        // setCurrentSession(await api.getSession());
+    api.signIn(signInDto, { withCredentials: true })
+      .then(async (tokensDto) => {
+        localStorage.setItem("token", tokensDto.access_token);
 
+        const userInfo = await api.getSession();
+        const session = await api.getMe(userInfo.sub);
+
+        setCurrentSession({
+          id: session.id,
+          userName: session.userName,
+          email: session.email,
+          nickname: session.nickname,
+          description: session.description,
+          registerDate: session.registerDate,
+          role: session.role
+        });
         return session;
       })
       .then(() => {
         router.push("/profile");
       })
-      .catch(() => {
-        setError("sign-in-error");
+      .catch((e: AxiosError<{ error_description: string }>) => {
+        console.log(e);
+        setError(e.response?.data?.error_description || "Unknown error");
       })
       .finally(() => {
         setIsLoading(false);
@@ -36,6 +49,6 @@ export function useSignIn() {
   return {
     isLoading,
     error,
-    signIn,
+    signIn
   };
 }

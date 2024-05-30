@@ -43,9 +43,10 @@ export function WeeklyBook() {
         <UiTypography as="h3" variant="heading" className="mb-5">Weekly Book</UiTypography>
         <Carousel slideInterval={3000} leftControl={<></>} rightControl={<></>} className="h-5/6">
           {
-            wBooks.map(b => {
+            wBooks.map((b, i) => {
               return (
                 <img
+                  key={i}
                   className="object-cover h-full"
                   src={b.image}
                   alt="..." />
@@ -58,9 +59,9 @@ export function WeeklyBook() {
         <UiTypography as="h3" variant="heading" className="mb-5">Meet Libgo</UiTypography>
         <ul className="border-b dark:border-gray-700 mt-5">
           {
-            meetData.map(m => {
+            meetData.map((m, i) => {
               return (
-                <Link href="#">
+                <Link href="#" key={i}>
                   <li key={m.text} className="flex items-center justify-between gap-4 border-t dark:border-gray-700 p-3 hover:bg-gray-100 dark:hover:bg-gray-700">
                     <div className="flex flex-col">
                       <UiTypography as="h4" variant="heading" className="text-base">

@@ -11,11 +11,11 @@ import { ROUTES } from "@/shared/constants";
 export function SignInForm({ className }: { className?: string }) {
 
   const { register, handleSubmit, formState } = useForm<{
-    email: string;
+    userName: string;
     password: string;
   }>({
     defaultValues: {
-      email: "",
+      userName: "",
       password: ""
     }
   });
@@ -34,11 +34,11 @@ export function SignInForm({ className }: { className?: string }) {
       <UiTextField
         label="Email"
         inputProps={{
-          ...register("email"),
-          type: "email",
-          placeholder: "example@ex.com"
+          ...register("userName"),
+          type: "string",
+          placeholder: "username"
         }}
-        error={formState.errors.email?.message}
+        error={formState.errors.userName?.message}
       />
       <UiTextField
         label={"password"}

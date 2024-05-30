@@ -1,4 +1,4 @@
-import { CreateChapterForm } from "@/features/chapter";
+import { CreateChapterForm } from "@/features/workroom";
 
 
 export function CreateChapterPage() {

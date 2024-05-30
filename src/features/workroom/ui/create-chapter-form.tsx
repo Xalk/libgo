@@ -2,25 +2,39 @@ import { useForm } from "react-hook-form";
 import clsx from "clsx";
 import { UiTextField } from "@/shared/ui/ui-text-field";
 import { Button } from "flowbite-react";
-
+import { useCreateChapter } from "../model/use-create-chapter";
+import { useRouter } from "next/router";
 
 
 export function CreateChapterForm({ className }: { className?: string }) {
 
   const { register, handleSubmit, formState } = useForm<{
-    name: string;
+    title: string;
     content: string;
   }>({
     defaultValues: {
-      name: "",
-      content: "",
+      title: "",
+      content: ""
     }
   });
 
   const error = false;
+  const router = useRouter();
+  const { query } = useRouter();
+  const bookId = query.bookId as string;
+  const { createChapter } = useCreateChapter();
+  const onCreate = (bookId: number) => {
+    router.push(`/workroom/${bookId}`);
+  };
 
   const handleSubmitCreate = handleSubmit((data) => {
     console.log(data);
+    createChapter({
+      bookId: Number(bookId),
+      title: data.title,
+      content: data.content,
+      isFree: true
+    }, onCreate);
   });
 
   return (
@@ -29,23 +43,20 @@ export function CreateChapterForm({ className }: { className?: string }) {
       onSubmit={handleSubmitCreate}
     >
       <UiTextField
-        label="Chapter Name"
+        label="Chapter Title"
         inputProps={{
-          ...register("name"),
+          ...register("title"),
           type: "Name",
-          placeholder: "Name"
+          placeholder: "Title"
         }}
-        error={formState.errors.name?.message}
+        error={formState.errors.title?.message}
       />
       <UiTextField
-        textAreaProps={{
-          className: "h-36",
-        }}
+
         multiline
         label="Content"
-        inputProps={{
+        textAreaProps={{
           ...register("content"),
-          type: "Content",
           placeholder: "Content"
         }}
         error={formState.errors.content?.message}

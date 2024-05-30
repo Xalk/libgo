@@ -11,9 +11,10 @@ export function TopBooks() {
         <div className="">
           <UiTypography as="h4" variant="heading" className="!text-blue-500 mb-5 text-xl">Power Ranking</UiTypography>
           {
-            [...Array(5)].map(b => {
+            [...Array(5)].map((b, i) => {
               return (
                 <BookCard
+                  key={i}
                   className="flex gap-4 mb-3"
                   imageStyle="w-1/6"
                   details={
@@ -30,9 +31,10 @@ export function TopBooks() {
         <div className="">
           <UiTypography as="h4" variant="heading" className="!text-blue-500 mb-5 text-xl">New</UiTypography>
           {
-            [...Array(5)].map(b => {
+            [...Array(5)].map((b, i) => {
               return (
                 <BookCard
+                  key={i}
                   className="flex gap-4 mb-3"
                   imageStyle="w-1/6"
                   details={
@@ -50,9 +52,10 @@ export function TopBooks() {
           <UiTypography as="h4" variant="heading" className="!text-blue-500 mb-5 text-xl">Collection
             Ranking</UiTypography>
           {
-            [...Array(5)].map(b => {
+            [...Array(5)].map((b, i) => {
               return (
                 <BookCard
+                  key={i}
                   className="flex gap-4 mb-3"
                   imageStyle="w-1/6"
                   details={

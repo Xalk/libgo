@@ -39,9 +39,9 @@ export function WeeklyFeatured() {
         </div>
         <ul className="flex flex-wrap">
           {
-            books.map(b => {
+            books?.map(b => {
               return (
-                <Link className="w-1/5" href={`/book/${b.id}`}>
+                <Link className="w-1/5" href={`/book/${b.id}`} key={b.id}>
                   <BookCard name={b.name} className="px-2"/>
                 </Link>
               );

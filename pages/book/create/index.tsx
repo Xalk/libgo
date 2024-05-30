@@ -1,5 +1,5 @@
 import { setPageLayout } from "@/shared/lib/next";
 import { CreateBookPage } from "@/pages/book";
-import { getOpenLayout } from "@/app/pub/get-open-layout";
+import { getPrivateLayout } from "@/app/pub/get-private-layout";
 
-export default setPageLayout(CreateBookPage, getOpenLayout);
+export default setPageLayout(CreateBookPage, getPrivateLayout);

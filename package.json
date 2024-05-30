@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "api:download": "curl -o ./src/shared/api/swagger-books-api.json http://localhost:5020/swagger/v1/swagger.json",
+    "api:download": "curl -o ./src/shared/api/swagger-users-api.json https://localhost:7015/swagger/v1/swagger.json",
     "api:generate": "orval"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "flowbite-react": "^0.7.2",
     "next": "14.1.0",
     "react": "^18",
+    "react-confetti-explosion": "^2.1.2",
     "react-dom": "^18",
     "react-hook-form": "^7.50.0",
     "zustand": "^4.5.0"

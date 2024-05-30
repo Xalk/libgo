@@ -8,15 +8,21 @@ import { createInstance } from "./api-instance";
 import type { BodyType } from "./api-instance";
 
 export interface BookDto {
-  id: number,
-  name: string,
-  description: string,
-  price: number,
-  publishDate: Date,
-  userId: number,
-  coAuthorIds: null | number[],
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  publishDate: Date;
+  userId: number;
+  coAuthorIds: null | number[];
 }
 
+export interface CommentDto {
+  id: number;
+  content: string;
+  userId: number;
+  bookId: number;
+}
 
 export interface UpdateCommentsRequest {
   bookId: number;
@@ -53,6 +59,7 @@ export interface CreateBooksRequest {
   /** @minLength 1 */
   name: string;
   price: number;
+  photoUrl: string;
 }
 
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
@@ -65,7 +72,7 @@ export const postApiBooks = (
 ) => {
   return createInstance<BookDto>(
     {
-      url: `/api/v${version}/Books`,
+      url: `https://localhost:7218/api/v${version}/Books`,
       method: "POST",
       headers: { "Content-Type": "application/json" },
       data: createBooksRequest,
@@ -75,7 +82,7 @@ export const postApiBooks = (
 };
 
 export const getApiBooks = (version: string, options?: SecondParameter<typeof createInstance>) => {
-  return createInstance<BookDto[]>({ url: `/api/v${version}/Books`, method: "GET" }, options);
+  return createInstance<BookDto[]>({ url: `https://localhost:7218/api/v${version}/Books`, method: "GET" }, options);
 };
 
 export const putApiBooks = (
@@ -85,7 +92,7 @@ export const putApiBooks = (
 ) => {
   return createInstance<void>(
     {
-      url: `/api/v${version}/Books`,
+      url: `https://localhost:7218/api/v${version}/Books`,
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       data: updateBooksRequest,
@@ -95,11 +102,11 @@ export const putApiBooks = (
 };
 
 export const getApiBooksId = (version: string, id: number, options?: SecondParameter<typeof createInstance>) => {
-  return createInstance<BookDto>({ url: `/api/v${version}/Books/${id}`, method: "GET" }, options);
+  return createInstance<BookDto>({ url: `https://localhost:7218/api/v${version}/Books/${id}`, method: "GET" }, options);
 };
 
 export const deleteApiBooksId = (version: string, id: number, options?: SecondParameter<typeof createInstance>) => {
-  return createInstance<void>({ url: `/api/v${version}/Books/${id}`, method: "DELETE" }, options);
+  return createInstance<void>({ url: `https://localhost:7218/api/v${version}/Books/${id}`, method: "DELETE" }, options);
 };
 
 export const getApiBooksPageId = (version: string, id: number, options?: SecondParameter<typeof createInstance>) => {
@@ -114,12 +121,11 @@ export const getApiBooksGenreGenreId = (
   return createInstance<void>({ url: `/api/v${version}/Books/genre/${genreId}`, method: "GET" }, options);
 };
 
-export const getApiBooksUserUserId = (
-  version: string,
-  userId: number,
-  options?: SecondParameter<typeof createInstance>,
-) => {
-  return createInstance<void>({ url: `/api/v${version}/Books/user/${userId}`, method: "GET" }, options);
+export const getApiBooksUserUserId = (version: string, userId: number, options?: SecondParameter<typeof createInstance>) => {
+  return createInstance<BookDto[]>(
+    { url: `https://localhost:7218/api/v${version}/Books/user/${userId}`, method: "GET" },
+    options,
+  );
 };
 
 export const postApiComments = (
@@ -127,9 +133,9 @@ export const postApiComments = (
   createCommentsRequest: BodyType<CreateCommentsRequest>,
   options?: SecondParameter<typeof createInstance>,
 ) => {
-  return createInstance<void>(
+  return createInstance<CommentDto>(
     {
-      url: `/api/v${version}/Comments`,
+      url: `https://localhost:7218/api/v${version}/Comments`,
       method: "POST",
       headers: { "Content-Type": "application/json" },
       data: createCommentsRequest,
@@ -158,20 +164,15 @@ export const getApiCommentsId = (version: string, id: number, options?: SecondPa
   return createInstance<void>({ url: `/api/v${version}/Comments/${id}`, method: "GET" }, options);
 };
 
-export const deleteApiCommentsId = (
-  version: string,
-  id: number,
-  options?: SecondParameter<typeof createInstance>,
-) => {
+export const deleteApiCommentsId = (version: string, id: number, options?: SecondParameter<typeof createInstance>) => {
   return createInstance<void>({ url: `/api/v${version}/Comments/${id}`, method: "DELETE" }, options);
 };
 
-export const getApiCommentsBookId = (
-  version: string,
-  id: number,
-  options?: SecondParameter<typeof createInstance>,
-) => {
-  return createInstance<void>({ url: `/api/v${version}/Comments/book/${id}`, method: "GET" }, options);
+export const getApiCommentsBookId = (version: string, id: number, options?: SecondParameter<typeof createInstance>) => {
+  return createInstance<CommentDto[]>(
+    { url: `https://localhost:7218/api/v${version}/Comments/book/${id}`, method: "GET" },
+    options,
+  );
 };
 
 export const getApiCommentsUser = (version: string, options?: SecondParameter<typeof createInstance>) => {
